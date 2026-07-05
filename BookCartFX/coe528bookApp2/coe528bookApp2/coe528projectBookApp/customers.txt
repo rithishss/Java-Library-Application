@@ -1,0 +1,3 @@
+mary,pass,0
+ritish,hi,0
+tristan,cooked,0

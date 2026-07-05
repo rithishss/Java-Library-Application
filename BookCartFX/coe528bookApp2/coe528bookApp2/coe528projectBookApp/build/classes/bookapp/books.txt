@@ -1,0 +1,4 @@
+Example Book #2,30.0
+Example Book #3,10.0
+Example Book #4,25.0
+Example Book #1,20.0

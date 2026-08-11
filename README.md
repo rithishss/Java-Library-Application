@@ -6,8 +6,57 @@ their own order history.
 
 Project root: `BookCartFX/coe528bookApp2/coe528bookApp2/coe528projectBookApp/`
 
-Open that folder in NetBeans and press F6. See `PROGRESS.md` for build notes and
-the JavaFX setup.
+## Getting started
+
+The JavaFX SDK is a platform-specific download of about 50 MB, so it is not kept
+in the repository and has to be fetched once after cloning. Everything else the
+build needs is committed.
+
+```bash
+cd BookCartFX/coe528bookApp2/coe528bookApp2/coe528projectBookApp
+./setup.sh
+```
+
+`setup.sh` works out your platform, downloads the matching JavaFX 25.0.1 bundle
+and unpacks it into `lib/`. Running it again does nothing. On Windows without a
+shell, download the bundle by hand from https://gluonhq.com/products/javafx/ and
+unzip it into `lib/` so that `lib/javafx-sdk-25.0.1/lib/` exists.
+
+Then open that same folder in NetBeans — the one containing `nbproject/`, not a
+parent — and press **F6**. Or from a terminal:
+
+```bash
+ant run
+```
+
+Building without the SDK stops with a message telling you to run `setup.sh`,
+rather than a hundred `package javafx.x does not exist` errors.
+
+### First run
+
+The database is created and seeded automatically. `bookstore.db` is not
+committed; on first start the app creates the schema and imports `customers.txt`
+and `books.txt`, then hashes the passwords it just imported. You get three
+customers and two books, with no order history:
+
+```
+Migrated 3 customers from customers.txt
+Migrated 2 books from books.txt
+Hashed 3 plain text password(s)
+```
+
+Log in as `mary` / `pass`, `ritish` / `hi` or `tristan` / `cooked`. The owner is
+`owner` / `admin123`.
+
+That is enough to use the app, but it leaves the analytics with almost nothing to
+report. To load the demo dataset instead — 40 customers and ~2,500 orders, which
+is what the report further down was generated from:
+
+```bash
+sqlite3 bookstore.db < sql/sample-data.sql
+```
+
+See `PROGRESS.md` for build notes and the stage-by-stage development record.
 
 ---
 

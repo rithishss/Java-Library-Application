@@ -67,7 +67,31 @@
     Notice that the overridden target depends on the jar target and not only on 
     the compile target as the regular run target does. Again, for a list of available 
     properties which you can use, check the target you are overriding in the
-    nbproject/build-impl.xml file. 
+    nbproject/build-impl.xml file.
 
     -->
+
+    <!-- The JavaFX SDK is not committed, so a fresh clone has no copy of it.
+         Without this check the build fails with a hundred "package javafx.x
+         does not exist" errors, which does not tell you what is actually
+         wrong. -pre-compile is the extension point build-impl.xml provides. -->
+    <target name="-pre-compile" depends="-check-javafx"/>
+
+    <target name="-check-javafx">
+        <available file="${javafx.sdk.lib}/javafx.controls.jar" property="javafx.sdk.present"/>
+        <fail unless="javafx.sdk.present">
+
+The JavaFX SDK is missing.
+
+  Expected: ${javafx.sdk.lib}
+
+It is a platform-specific download of about 50 MB, so it is not kept in the
+repository. To fetch it, from this directory run:
+
+      ./setup.sh
+
+Or download the bundle for your platform from https://gluonhq.com/products/javafx/
+and unzip it into lib/, so that lib/javafx-sdk-25.0.1/lib/ exists.
+        </fail>
+    </target>
 </project>

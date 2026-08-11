@@ -139,6 +139,85 @@ Every customer's stored points balance is exactly the sum of what their orders
 earned minus what they redeemed, so section 6 reconciles rather than being
 decorative.
 
+### Key figures
+
+Four numbers worth pulling out, each with the query that produces it so you can
+run it yourself and get the same answer. Every one is against the demo dataset
+currently in `bookstore.db`.
+
+**Volume — 2,495 orders across 40 customers**
+
+```sql
+SELECT (SELECT COUNT(*) FROM orders)    AS orders,
+       (SELECT COUNT(*) FROM customers) AS customers;
+```
+
+```
+┌────────┬───────────┐
+│ orders │ customers │
+├────────┼───────────┤
+│ 2495   │ 40        │
+└────────┴───────────┘
+```
+
+**Concentration — 12 customers account for 80.3% of all orders**
+
+The Pareto shape of the store. Twelve people out of forty placed 2,003 of the
+2,495 orders, so the business depends on a small group far more than the customer
+count suggests.
+
+```sql
+SELECT COUNT(*) AS heavy_buyers,
+       SUM(n)   AS their_orders,
+       printf('%.1f%%', 100.0 * SUM(n) / (SELECT COUNT(*) FROM orders)) AS share_of_orders
+FROM (SELECT username, COUNT(*) AS n
+      FROM orders GROUP BY username HAVING n >= 100);
+```
+
+```
+┌──────────────┬──────────────┬─────────────────┐
+│ heavy_buyers │ their_orders │ share_of_orders │
+├──────────────┼──────────────┼─────────────────┤
+│ 12           │ 2003         │ 80.3%           │
+└──────────────┴──────────────┴─────────────────┘
+```
+
+**The long tail — 9 customers ordered exactly once**
+
+```sql
+SELECT COUNT(*) AS one_time_buyers
+FROM (SELECT username FROM orders GROUP BY username HAVING COUNT(*) = 1);
+```
+
+```
+┌─────────────────┐
+│ one_time_buyers │
+├─────────────────┤
+│ 9               │
+└─────────────────┘
+```
+
+**Loyalty — 17 customers have reached Gold**
+
+Gold is 1000 points, matching `GoldCustomer` / `SilverCustomer` in the Java.
+
+```sql
+SELECT COUNT(*)                                       AS gold_customers,
+       (SELECT COUNT(*) FROM customers) - COUNT(*)    AS silver_customers
+FROM customers WHERE points >= 1000;
+```
+
+```
+┌────────────────┬──────────────────┐
+│ gold_customers │ silver_customers │
+├────────────────┼──────────────────┤
+│ 17             │ 23               │
+└────────────────┴──────────────────┘
+```
+
+Section 12 of the report below breaks the concentration out into bands, and
+section 7 splits revenue by tier.
+
 ### Report
 
 Generated 11 August 2026 from the demo dataset. Regenerate with the command above.

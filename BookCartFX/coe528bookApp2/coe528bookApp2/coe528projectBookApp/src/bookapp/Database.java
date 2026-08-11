@@ -162,6 +162,14 @@ public class Database {
         }
     }
 
+    // The seed files carry a header comment. A comment happening to contain two
+    // commas would otherwise parse as a record, so they are skipped explicitly
+    // rather than relying on the field count to reject them.
+    private static boolean isComment(String line) {
+        String trimmed = line.trim();
+        return trimmed.isEmpty() || trimmed.startsWith("#");
+    }
+
     private static boolean isEmpty(Connection c, String table) throws SQLException {
         try (Statement st = c.createStatement();
              ResultSet rs = st.executeQuery("SELECT COUNT(*) FROM " + table)) {
@@ -178,6 +186,9 @@ public class Database {
              PreparedStatement ps = c.prepareStatement(sql)) {
             String line;
             while ((line = br.readLine()) != null) {
+                if (isComment(line)) {
+                    continue;
+                }
                 String[] customerData = line.split(",");
                 if (customerData.length == 3) {
                     ps.setString(1, customerData[0]);
@@ -204,6 +215,9 @@ public class Database {
              PreparedStatement ps = c.prepareStatement(sql)) {
             String line;
             while ((line = br.readLine()) != null) {
+                if (isComment(line)) {
+                    continue;
+                }
                 String[] bookData = line.split(",");
                 if (bookData.length == 3) {
                     ps.setString(1, bookData[0]);

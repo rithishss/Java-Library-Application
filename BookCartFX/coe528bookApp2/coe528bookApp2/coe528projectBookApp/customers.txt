@@ -1,3 +1,4 @@
+# Demo seed data with fictional users - the running app stores PBKDF2 password hashes; these plaintext values exist only to seed a new bookstore.db and are the documented test logins.
 mary,pass,0
 ritish,hi,0
 tristan,cooked,0

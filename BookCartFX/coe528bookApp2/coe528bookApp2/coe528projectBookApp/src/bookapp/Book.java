@@ -10,6 +10,7 @@ package bookapp;
  */
 // Book.java
 public class Book {
+    private int id;  // Row id in the books table, 0 until it has been saved
     private String title;
     private String author;
     private double price;
@@ -19,6 +20,19 @@ public class Book {
         this.title = title;
         this.author = author;
         this.price = price;
+    }
+
+    public Book(int id, String title, String author, double price) {
+        this(title, author, price);
+        this.id = id;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public void setPrice(double price) {

@@ -30,6 +30,11 @@
          </font></Button>
       <VBox layoutY="59.0" prefHeight="375.0" prefWidth="123.0" style="-fx-background-color: black;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="25.0">
          <children>
+            <Button mnemonicParsing="false" onAction="#goHistoryScreen" prefHeight="41.0" prefWidth="123.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" text="History" textFill="WHITE">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Button>
             <Button mnemonicParsing="false" onAction="#logout" prefHeight="41.0" prefWidth="123.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" text="Logout" textFill="WHITE">
                <font>
                   <Font size="13.0" />

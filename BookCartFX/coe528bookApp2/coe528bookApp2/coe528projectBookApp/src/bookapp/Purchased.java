@@ -12,11 +12,11 @@ package bookapp;
 public class Purchased implements BookPurchaseState {
     @Override
     public void purchase(Customer c) {
-        // Action on purchase confirmation
+        // Already purchased, nothing to change
     }
 
     @Override
     public void notPurchase(Customer c) {
-        // Optional behavior for not purchasing
+        c.setBookPurchaseState(new NotPurchased());  // Ready for the next order
     }
 }

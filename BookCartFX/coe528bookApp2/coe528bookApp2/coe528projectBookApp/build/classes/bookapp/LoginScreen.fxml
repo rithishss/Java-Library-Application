@@ -54,6 +54,6 @@
       </Text>
       <TextField fx:id="username" layoutX="221.0" layoutY="167.0" promptText="Username" />
       <PasswordField fx:id="password" layoutX="221.0" layoutY="205.0" promptText="Password" />
-      <Button layoutX="279.0" layoutY="248.0" mnemonicParsing="false" onAction="#login" onMouseClicked="#login" text="Login" />
+      <Button layoutX="279.0" layoutY="248.0" mnemonicParsing="false" onAction="#login" text="Login" />
    </children>
 </AnchorPane>

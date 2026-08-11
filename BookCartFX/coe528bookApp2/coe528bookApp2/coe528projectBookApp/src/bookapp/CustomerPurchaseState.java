@@ -12,4 +12,7 @@ package bookapp;
 public interface CustomerPurchaseState {
     void rankUp(Customer c);
     void rankDown(Customer c);
+
+    // Lets the screens show the rank without testing the state's class.
+    String getStatusName();
 }

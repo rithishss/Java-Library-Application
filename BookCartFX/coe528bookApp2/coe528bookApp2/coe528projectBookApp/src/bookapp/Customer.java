@@ -26,6 +26,7 @@ public class Customer {
         this.username = username;
         this.password = password;
         this.points = points;
+        updateStatus();  // Someone loaded from the database with 1000+ points is already Gold
     }
 
     public void purchase() {
@@ -60,8 +61,18 @@ public class Customer {
         return password;
     }
 
+    // What the owner's customer table shows. The stored value is a hash, so
+    // there is nothing useful to display and every reason not to.
+    public String getMaskedPassword() {
+        return "••••••••";
+    }
+
     public int getPoints() {
         return points;
+    }
+
+    public String getStatus() {
+        return customerState.getStatusName();
     }
 
     public void addPoints(int amount) {
@@ -75,11 +86,10 @@ public class Customer {
         updateStatus();
     }
 
+    // Asks the current state to move, rather than deciding here, so that
+    // GoldCustomer and SilverCustomer are what actually govern the transition.
     private void updateStatus() {
-        if (points >= 1000) {
-            setCustomerPurchaseState(new GoldCustomer());
-        } else {
-            setCustomerPurchaseState(new SilverCustomer());
-        }
+        rankUp();    // Silver -> Gold once the balance reaches 1000
+        rankDown();  // Gold -> Silver once it falls back below
     }
 }

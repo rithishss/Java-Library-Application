@@ -21,4 +21,9 @@ public class GoldCustomer implements CustomerPurchaseState {
             c.setCustomerPurchaseState(new SilverCustomer());
         }
     }
+
+    @Override
+    public String getStatusName() {
+        return "Gold";
+    }
 }

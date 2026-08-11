@@ -21,4 +21,9 @@ public class SilverCustomer implements CustomerPurchaseState {
     public void rankDown(Customer c) {
         // Already silver, no downgrade
     }
+
+    @Override
+    public String getStatusName() {
+        return "Silver";
+    }
 }

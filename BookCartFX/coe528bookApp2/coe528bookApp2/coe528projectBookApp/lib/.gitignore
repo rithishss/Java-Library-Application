@@ -1,0 +1,9 @@
+# The JavaFX SDK is ~54 MB of platform-specific binaries, so it is not committed.
+# Download openjfx-25.0.1_osx-aarch64_bin-sdk.zip from https://gluonhq.com/products/javafx/
+# and unzip it here, so that this directory contains javafx-sdk-25.0.1/lib/.
+# See ../../../../README.md for setup notes.
+javafx-sdk-*/
+
+# The JDBC and logging jars are small and are committed, so that the project
+# compiles straight after a clone.
+!*.jar

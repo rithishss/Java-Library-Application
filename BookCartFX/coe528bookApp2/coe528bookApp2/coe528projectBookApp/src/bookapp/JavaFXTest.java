@@ -31,11 +31,17 @@ import javafx.stage.Stage;
 public class JavaFXTest extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
+        Database.getConnection();  // Opens bookstore.db and migrates on first run
         Parent root = FXMLLoader.load(getClass().getResource("LoginScreen.fxml"));
         //Label label = new Label("JavaFX is working!");
         //Scene scene = new Scene(label, 300, 200);
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
+    }
+
+    @Override
+    public void stop() throws Exception {
+        Database.close();  // Release the SQLite connection on exit
     }
 
     public static void main(String[] args) {

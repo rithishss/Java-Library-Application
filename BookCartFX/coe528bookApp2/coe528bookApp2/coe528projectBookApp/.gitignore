@@ -1,0 +1,9 @@
+# Runtime database. Recreated on first run, migrating from customers.txt and
+# books.txt, so it does not need to travel with the repo.
+bookstore.db
+bookstore.db-journal
+bookstore.db-wal
+bookstore.db-shm
+
+# Backups taken before loading sql/sample-data.sql.
+bookstore.db.bak-*

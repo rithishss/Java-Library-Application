@@ -26,6 +26,11 @@
       </ImageView>
       <VBox layoutY="59.0" prefHeight="375.0" prefWidth="123.0" style="-fx-background-color: black;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="25.0">
          <children>
+            <Button mnemonicParsing="false" onAction="#goCustomerStartScreen" prefHeight="41.0" prefWidth="123.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" text="Back" textFill="WHITE">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Button>
             <Button mnemonicParsing="false" onAction="#logout" prefHeight="41.0" prefWidth="123.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" text="Logout" textFill="WHITE">
                <font>
                   <Font size="13.0" />
@@ -79,5 +84,10 @@
             <TableColumn fx:id="statusColumn" prefWidth="75.0" text="Status" />
         </columns>
       </TableView>
+      <Button layoutX="277.0" layoutY="330.0" mnemonicParsing="false" onAction="#confirmPurchase" prefHeight="41.0" prefWidth="123.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-width: 3px 3px 3px 3px;" text="Confirm" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

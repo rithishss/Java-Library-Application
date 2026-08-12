@@ -56,8 +56,6 @@ is what the report further down was generated from:
 sqlite3 bookstore.db < sql/sample-data.sql
 ```
 
-See `PROGRESS.md` for build notes and the stage-by-stage development record.
-
 ---
 
 ## Sales analytics

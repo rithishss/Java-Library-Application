@@ -13,3 +13,7 @@ bookstore.db.bak-*
 # large diff. Untracked as of this commit; the sources still build them.
 build/
 dist/
+
+# NetBeans per-machine IDE state: open editor tabs, and the path to the
+# local NetBeans build.properties. Regenerated when the project is opened.
+nbproject/private/
